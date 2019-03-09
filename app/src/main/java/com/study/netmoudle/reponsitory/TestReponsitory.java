@@ -1,6 +1,6 @@
 package com.study.netmoudle.reponsitory;
 
-import com.study.netmoudle.bean.TestBean;
+import com.study.netmoudle.bean.TestBean2;
 import com.study.netmoudle.reponsitory.base.BaseReponsitory;
 
 import io.reactivex.Observable;
@@ -10,6 +10,6 @@ import io.reactivex.Observable;
  */
 public interface TestReponsitory extends BaseReponsitory {
 
-    Observable<TestBean> getTest();
+    Observable<TestBean2> getTest();
 
 }
