@@ -2,6 +2,7 @@ package com.study.netmoudle.reponsitory.impl;
 
 import com.study.netmoudle.baseurl.BaseUrl;
 import com.study.netmoudle.bean.TestBean;
+import com.study.netmoudle.interceptor.TestInterceptor;
 import com.study.netmoudle.reponsitory.TestReponsitory;
 import com.study.netmoudle.reponsitory.base.BaserImpl;
 import com.study.netmoudle.service.TestService;
@@ -21,7 +22,7 @@ public class TestReponsitoryImpl extends BaserImpl implements TestReponsitory {
 
     @Override
     public Observable<TestBean> getTest() {
-        return createService(TestService.class).getTestBean();
+        return createService(BaseUrl.TEST,TestService.class,new TestInterceptor()).getTestBean();
     }
 
 }
