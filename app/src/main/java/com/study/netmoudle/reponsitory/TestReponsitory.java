@@ -1,7 +1,15 @@
 package com.study.netmoudle.reponsitory;
 
+import com.study.netmoudle.bean.TestBean;
+import com.study.netmoudle.reponsitory.base.BaseReponsitory;
+
+import io.reactivex.Observable;
+
 /**
  * Created by LHD on 2019/3/9.
  */
-public class TestReponsitory {
+public interface TestReponsitory extends BaseReponsitory {
+
+    Observable<TestBean> getTest();
+
 }
