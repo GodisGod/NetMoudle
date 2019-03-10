@@ -5,10 +5,9 @@ package com.study.netmoudle.bean;
  */
 public class TestBean {
 
-
     /**
      * message : success
-     * data : {"sex":"woman","age":18}
+     * data : {"name":"lily","sex":"woman","age":18}
      * code : 0
      */
 
@@ -42,12 +41,22 @@ public class TestBean {
 
     public static class DataBean {
         /**
+         * name : lily
          * sex : woman
          * age : 18
          */
 
+        private String name;
         private String sex;
         private int age;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
 
         public String getSex() {
             return sex;
@@ -65,4 +74,5 @@ public class TestBean {
             this.age = age;
         }
     }
+
 }

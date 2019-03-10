@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.study.netmoudle.usecase.BlogUsecase;
 import com.study.netmoudle.usecase.TestUsecase;
+import com.study.netmoudle.utils.PicUtils;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TestUsecase testUsecase;
     private Disposable disposable ;
     private Disposable disposableTest ;
+    private PicUtils picUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         btnGetBlog = findViewById(R.id.btn_get_blog_json);
         blogUsecase = new BlogUsecase();
         testUsecase = new TestUsecase();
+        picUtils = new PicUtils();
         btnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,7 +60,18 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("LHD","请求失败 = "+throwable.getMessage());
                     throwable.printStackTrace();
                 }));
-
+            findViewById(R.id.btn_concat1).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    picUtils.getPicSigns1();
+                }
+            });
+        findViewById(R.id.btn_concat2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                picUtils.getPicSigns2();
+            }
+        });
     }
 
     @Override
