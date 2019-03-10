@@ -21,4 +21,11 @@
         android:text="发送请求"
         android:layout_height="50dp"/>
 
+    <Button
+        android:id="@+id/btn_get_blog_json"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:text="发送博客请求"
+        android:layout_height="50dp"/>
+
 </LinearLayout>

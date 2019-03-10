@@ -15,4 +15,5 @@ public class BaseUsecase<T extends BaseReponsitory> {
         Class<BaseReponsitory> clazz = (Class<BaseReponsitory>) ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         this.reponsitory = (T)RepositoryMgr.instance().getRepository(clazz);
     }
+
 }

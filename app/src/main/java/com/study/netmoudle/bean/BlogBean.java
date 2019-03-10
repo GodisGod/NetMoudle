@@ -3,7 +3,7 @@ package com.study.netmoudle.bean;
 /**
  * Created by LHD on 2019/3/9.
  */
-public class TestBean2 {
+public class BlogBean {
 
 
     /**
@@ -312,7 +312,7 @@ public class TestBean2 {
 
     @Override
     public String toString() {
-        return "TestBean2{" +
+        return "BlogBean{" +
                 "login='" + login + '\'' +
                 ", id=" + id +
                 ", avatar_url='" + avatar_url + '\'' +

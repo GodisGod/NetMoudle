@@ -5,5 +5,5 @@ package com.study.netmoudle.baseurl;
  */
 public class BaseUrl {
     public static final String TEST = "https://github.com/GodisGod/";
-    public static final String TEST2 = "https://api.github.com/users/";
+    public static final String BLOG = "https://api.github.com/users/";
 }

@@ -1,7 +1,5 @@
 package com.study.netmoudle.reponsitory.base;
 
-import android.content.Context;
-
 import com.google.gson.Gson;
 
 import java.security.SecureRandom;
@@ -31,20 +29,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitHelper {
     private Set<Interceptor> defInterceptors;
-    private Context context;
     private OkHttpClient defOkHttpClient;
     private static RetrofitHelper INSTANCE;
     private Converter.Factory factory;
     private CookieJar cookieJar;
 
-    private RetrofitHelper(Context context) {
-        this.context = context;
+    private static String[] VERIFY_HOST_NAME_ARRAY = new String[2];
+
+    private RetrofitHelper() {
         this.defInterceptors = new HashSet();
     }
 
-    public static synchronized void init(Context context) {
+    public static synchronized void init() {
         if (INSTANCE == null) {
-            INSTANCE = new RetrofitHelper(context);
+            INSTANCE = new RetrofitHelper();
         }
     }
 
@@ -93,21 +91,24 @@ public class RetrofitHelper {
 
     public OkHttpClient getOkHttpClient(int connectTime, int readTime) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.hostnameVerifier(new HostnameVerifier() {
-            public boolean verify(String hostname, SSLSession session) {
-                return true;
-            }
-        });
-        builder.sslSocketFactory(getSslSocketFactory());
+//        builder .hostnameVerifier(new HostnameVerifier() {
+//            public boolean verify(String hostname, SSLSession session) {
+//                Log.i("LHD","");
+//                //为了正确处理主机名的验证，需要重写此方法
+//                if (TextUtils.isEmpty(hostname))return false;
+//                //在数组里定义需要校验的主机名
+//                return!Arrays.asList(VERIFY_HOST_NAME_ARRAY).contains(hostname);
+//            }
+//        });
+        builder.sslSocketFactory(getSslSocketFactory()).build();
         if (this.cookieJar != null) {
             builder.cookieJar(this.cookieJar);
         }
 
         if (this.defInterceptors != null) {
-            Iterator var5 = this.defInterceptors.iterator();
-
-            while(var5.hasNext()) {
-                Interceptor interceptor = (Interceptor)var5.next();
+            Iterator iterators = this.defInterceptors.iterator();
+            while(iterators.hasNext()) {
+                Interceptor interceptor = (Interceptor)iterators.next();
                 builder.addInterceptor(interceptor);
             }
         }
@@ -132,7 +133,6 @@ public class RetrofitHelper {
                     if (this.cookieJar != null) {
                         builder.cookieJar(this.cookieJar);
                     }
-
                     this.defOkHttpClient = builder.build();
                 }
             }
@@ -154,16 +154,9 @@ public class RetrofitHelper {
     public OkHttpClient createClient(Interceptor... interceptors) {
         if (interceptors != null && interceptors.length != 0) {
             OkHttpClient.Builder builder = this.newBuilder();
-            if (interceptors != null) {
-                Interceptor[] var3 = interceptors;
-                int var4 = interceptors.length;
-
-                for(int var5 = 0; var5 < var4; ++var5) {
-                    Interceptor interceptor = var3[var5];
-                    builder.addInterceptor(interceptor);
-                }
+            for (Interceptor interceptor:interceptors){
+                builder.addInterceptor(interceptor);
             }
-
             return builder.build();
         } else {
             return this.getOkHttpClient();

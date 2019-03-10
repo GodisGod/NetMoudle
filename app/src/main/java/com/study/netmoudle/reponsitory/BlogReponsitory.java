@@ -1,6 +1,6 @@
 package com.study.netmoudle.reponsitory;
 
-import com.study.netmoudle.bean.TestBean;
+import com.study.netmoudle.bean.BlogBean;
 import com.study.netmoudle.reponsitory.base.BaseReponsitory;
 
 import io.reactivex.Observable;
@@ -8,8 +8,8 @@ import io.reactivex.Observable;
 /**
  * Created by LHD on 2019/3/9.
  */
-public interface TestReponsitory extends BaseReponsitory {
+public interface BlogReponsitory extends BaseReponsitory {
 
-    Observable<TestBean> getTest();
+    Observable<BlogBean> getBlogJson();
 
 }

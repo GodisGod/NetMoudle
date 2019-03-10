@@ -16,6 +16,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         provider.addRepository();
-        RetrofitHelper.init(this);
+        RetrofitHelper.init();
     }
 }
